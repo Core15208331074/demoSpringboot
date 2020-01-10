@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PersonnelMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Personnel">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="study_number" jdbcType="VARCHAR" property="studyNumber"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="student_type" jdbcType="INTEGER" property="studentType"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="person_id" jdbcType="VARCHAR" property="personId"/>
+        <result column="parent_name" jdbcType="VARCHAR" property="parentName"/>
+        <result column="parent_phone" jdbcType="VARCHAR" property="parentPhone"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="face_image_id" jdbcType="VARCHAR" property="faceImageId"/>
+        <result column="face_image_uri" jdbcType="VARCHAR" property="faceImageUri"/>
+        <result column="validity_period" jdbcType="INTEGER" property="validityPeriod"/>
+        <result column="picture_uri" jdbcType="VARCHAR" property="pictureUri"/>
+        <result column="person_type" jdbcType="VARCHAR" property="personType"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="scene_image_uri" jdbcType="VARCHAR" property="sceneImageUri"/>
+        <result column="file_number" jdbcType="VARCHAR" property="fileNumber"/>
+        <result column="person_picture_uri" jdbcType="VARCHAR" property="personPictureUri"/>
+        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime"/>
+        <result column="entry_time" jdbcType="TIMESTAMP" property="entryTime"/>
+        <result column="dept_id" jdbcType="BIGINT" property="deptId"/>
+        <result column="post_id" jdbcType="BIGINT" property="postId"/>
+        <result column="job_number" jdbcType="VARCHAR" property="jobNumber"/>
+        <result column="is_del" jdbcType="TINYINT" property="isDel"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+        <result column="nation" jdbcType="INTEGER" property="nation"/>
+        <result column="ext1" jdbcType="VARCHAR" property="ext1"/>
+        <result column="ext2" jdbcType="VARCHAR" property="ext2"/>
+        <result column="expire_time" jdbcType="INTEGER" property="expireTime"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.demo.entity.Personnel">
+        <result column="tag_id" jdbcType="LONGVARCHAR" property="tagId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, study_number, name, gender, student_type, age, person_id, parent_name, parent_phone, 
+    phone, face_image_id, face_image_uri, validity_period, picture_uri, person_type, 
+    status, scene_image_uri, file_number, person_picture_uri, creat_time, entry_time, 
+    dept_id, post_id, job_number, is_del, remark, birthday, nation, ext1, ext2, expire_time
+  </sql>
+    <sql id="Blob_Column_List">
+    tag_id
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from ss_personnel
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectAllPersonnel" resultMap="BaseResultMap">
+    select * from ss_personnel
+  </select>
+    <select id="selectAllPersonnelCount" resultType="Integer">
+    select count(*) from ss_personnel
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ss_personnel
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.example.demo.entity.Personnel">
+    insert into ss_personnel (id, study_number, name, 
+      gender, student_type, age, 
+      person_id, parent_name, parent_phone, 
+      phone, face_image_id, face_image_uri, 
+      validity_period, picture_uri, person_type, 
+      status, scene_image_uri, file_number, 
+      person_picture_uri, creat_time, entry_time, 
+      dept_id, post_id, job_number, 
+      is_del, remark, birthday, 
+      nation, ext1, ext2, 
+      expire_time, tag_id)
+    values (#{id,jdbcType=INTEGER}, #{studyNumber,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=INTEGER}, #{studentType,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, 
+      #{personId,jdbcType=VARCHAR}, #{parentName,jdbcType=VARCHAR}, #{parentPhone,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{faceImageId,jdbcType=VARCHAR}, #{faceImageUri,jdbcType=VARCHAR}, 
+      #{validityPeriod,jdbcType=INTEGER}, #{pictureUri,jdbcType=VARCHAR}, #{personType,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{sceneImageUri,jdbcType=VARCHAR}, #{fileNumber,jdbcType=VARCHAR}, 
+      #{personPictureUri,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP}, #{entryTime,jdbcType=TIMESTAMP}, 
+      #{deptId,jdbcType=BIGINT}, #{postId,jdbcType=BIGINT}, #{jobNumber,jdbcType=VARCHAR}, 
+      #{isDel,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=INTEGER}, #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, 
+      #{expireTime,jdbcType=INTEGER}, #{tagId,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.demo.entity.Personnel">
+        insert into ss_personnel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="studyNumber != null">
+                study_number,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="studentType != null">
+                student_type,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="personId != null">
+                person_id,
+            </if>
+            <if test="parentName != null">
+                parent_name,
+            </if>
+            <if test="parentPhone != null">
+                parent_phone,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="faceImageId != null">
+                face_image_id,
+            </if>
+            <if test="faceImageUri != null">
+                face_image_uri,
+            </if>
+            <if test="validityPeriod != null">
+                validity_period,
+            </if>
+            <if test="pictureUri != null">
+                picture_uri,
+            </if>
+            <if test="personType != null">
+                person_type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="sceneImageUri != null">
+                scene_image_uri,
+            </if>
+            <if test="fileNumber != null">
+                file_number,
+            </if>
+            <if test="personPictureUri != null">
+                person_picture_uri,
+            </if>
+            <if test="creatTime != null">
+                creat_time,
+            </if>
+            <if test="entryTime != null">
+                entry_time,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+            <if test="postId != null">
+                post_id,
+            </if>
+            <if test="jobNumber != null">
+                job_number,
+            </if>
+            <if test="isDel != null">
+                is_del,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="nation != null">
+                nation,
+            </if>
+            <if test="ext1 != null">
+                ext1,
+            </if>
+            <if test="ext2 != null">
+                ext2,
+            </if>
+            <if test="expireTime != null">
+                expire_time,
+            </if>
+            <if test="tagId != null">
+                tag_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="studyNumber != null">
+                #{studyNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="studentType != null">
+                #{studentType,jdbcType=INTEGER},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="personId != null">
+                #{personId,jdbcType=VARCHAR},
+            </if>
+            <if test="parentName != null">
+                #{parentName,jdbcType=VARCHAR},
+            </if>
+            <if test="parentPhone != null">
+                #{parentPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="faceImageId != null">
+                #{faceImageId,jdbcType=VARCHAR},
+            </if>
+            <if test="faceImageUri != null">
+                #{faceImageUri,jdbcType=VARCHAR},
+            </if>
+            <if test="validityPeriod != null">
+                #{validityPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="pictureUri != null">
+                #{pictureUri,jdbcType=VARCHAR},
+            </if>
+            <if test="personType != null">
+                #{personType,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="sceneImageUri != null">
+                #{sceneImageUri,jdbcType=VARCHAR},
+            </if>
+            <if test="fileNumber != null">
+                #{fileNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="personPictureUri != null">
+                #{personPictureUri,jdbcType=VARCHAR},
+            </if>
+            <if test="creatTime != null">
+                #{creatTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="entryTime != null">
+                #{entryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deptId != null">
+                #{deptId,jdbcType=BIGINT},
+            </if>
+            <if test="postId != null">
+                #{postId,jdbcType=BIGINT},
+            </if>
+            <if test="jobNumber != null">
+                #{jobNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="isDel != null">
+                #{isDel,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="nation != null">
+                #{nation,jdbcType=INTEGER},
+            </if>
+            <if test="ext1 != null">
+                #{ext1,jdbcType=VARCHAR},
+            </if>
+            <if test="ext2 != null">
+                #{ext2,jdbcType=VARCHAR},
+            </if>
+            <if test="expireTime != null">
+                #{expireTime,jdbcType=INTEGER},
+            </if>
+            <if test="tagId != null">
+                #{tagId,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Personnel">
+        update ss_personnel
+        <set>
+            <if test="studyNumber != null">
+                study_number = #{studyNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="studentType != null">
+                student_type = #{studentType,jdbcType=INTEGER},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="personId != null">
+                person_id = #{personId,jdbcType=VARCHAR},
+            </if>
+            <if test="parentName != null">
+                parent_name = #{parentName,jdbcType=VARCHAR},
+            </if>
+            <if test="parentPhone != null">
+                parent_phone = #{parentPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="faceImageId != null">
+                face_image_id = #{faceImageId,jdbcType=VARCHAR},
+            </if>
+            <if test="faceImageUri != null">
+                face_image_uri = #{faceImageUri,jdbcType=VARCHAR},
+            </if>
+            <if test="validityPeriod != null">
+                validity_period = #{validityPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="pictureUri != null">
+                picture_uri = #{pictureUri,jdbcType=VARCHAR},
+            </if>
+            <if test="personType != null">
+                person_type = #{personType,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="sceneImageUri != null">
+                scene_image_uri = #{sceneImageUri,jdbcType=VARCHAR},
+            </if>
+            <if test="fileNumber != null">
+                file_number = #{fileNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="personPictureUri != null">
+                person_picture_uri = #{personPictureUri,jdbcType=VARCHAR},
+            </if>
+            <if test="creatTime != null">
+                creat_time = #{creatTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="entryTime != null">
+                entry_time = #{entryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{deptId,jdbcType=BIGINT},
+            </if>
+            <if test="postId != null">
+                post_id = #{postId,jdbcType=BIGINT},
+            </if>
+            <if test="jobNumber != null">
+                job_number = #{jobNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="isDel != null">
+                is_del = #{isDel,jdbcType=TINYINT},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="nation != null">
+                nation = #{nation,jdbcType=INTEGER},
+            </if>
+            <if test="ext1 != null">
+                ext1 = #{ext1,jdbcType=VARCHAR},
+            </if>
+            <if test="ext2 != null">
+                ext2 = #{ext2,jdbcType=VARCHAR},
+            </if>
+            <if test="expireTime != null">
+                expire_time = #{expireTime,jdbcType=INTEGER},
+            </if>
+            <if test="tagId != null">
+                tag_id = #{tagId,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.demo.entity.Personnel">
+    update ss_personnel
+    set study_number = #{studyNumber,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      student_type = #{studentType,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      person_id = #{personId,jdbcType=VARCHAR},
+      parent_name = #{parentName,jdbcType=VARCHAR},
+      parent_phone = #{parentPhone,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      face_image_id = #{faceImageId,jdbcType=VARCHAR},
+      face_image_uri = #{faceImageUri,jdbcType=VARCHAR},
+      validity_period = #{validityPeriod,jdbcType=INTEGER},
+      picture_uri = #{pictureUri,jdbcType=VARCHAR},
+      person_type = #{personType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      scene_image_uri = #{sceneImageUri,jdbcType=VARCHAR},
+      file_number = #{fileNumber,jdbcType=VARCHAR},
+      person_picture_uri = #{personPictureUri,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      entry_time = #{entryTime,jdbcType=TIMESTAMP},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      post_id = #{postId,jdbcType=BIGINT},
+      job_number = #{jobNumber,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=INTEGER},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      expire_time = #{expireTime,jdbcType=INTEGER},
+      tag_id = #{tagId,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Personnel">
+    update ss_personnel
+    set study_number = #{studyNumber,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      student_type = #{studentType,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      person_id = #{personId,jdbcType=VARCHAR},
+      parent_name = #{parentName,jdbcType=VARCHAR},
+      parent_phone = #{parentPhone,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      face_image_id = #{faceImageId,jdbcType=VARCHAR},
+      face_image_uri = #{faceImageUri,jdbcType=VARCHAR},
+      validity_period = #{validityPeriod,jdbcType=INTEGER},
+      picture_uri = #{pictureUri,jdbcType=VARCHAR},
+      person_type = #{personType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      scene_image_uri = #{sceneImageUri,jdbcType=VARCHAR},
+      file_number = #{fileNumber,jdbcType=VARCHAR},
+      person_picture_uri = #{personPictureUri,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      entry_time = #{entryTime,jdbcType=TIMESTAMP},
+      dept_id = #{deptId,jdbcType=BIGINT},
+      post_id = #{postId,jdbcType=BIGINT},
+      job_number = #{jobNumber,jdbcType=VARCHAR},
+      is_del = #{isDel,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=INTEGER},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      expire_time = #{expireTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
