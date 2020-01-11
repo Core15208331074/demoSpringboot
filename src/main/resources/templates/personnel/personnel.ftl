@@ -9,7 +9,7 @@
 <body>
 <div>
     <#list list as perssonnel>
-        ${perssonnel.name}+${perssonnel.id}</br>
+        ${perssonnel.name}+${perssonnel.id}&nbsp;&nbsp;&nbsp;&nbsp;
     </#list>
 </div>
 <div id="index01" style="width: 40%;height: 550px;text-align: center;margin-left: 30%;margin-top: 2%;"></div>
