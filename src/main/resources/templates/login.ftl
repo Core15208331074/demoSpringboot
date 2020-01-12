@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="../static/plugins/layui/css/layui.css" rel="stylesheet">
+    <script src="../static/plugins/layui/layui.all.js"></script>
     <link href="static/css/login/login.css" rel="stylesheet"/>
     <script src="static/plugins/jQuery/jQuery.js" rel="stylesheet"></script>
     <title>登录</title>
@@ -20,7 +22,7 @@
                 if you get some questions, click me !
             </a>
         </div>
-        <input type="hidden" id="hiddenInput" value="You fucking fool! You think I am going to help you when You click me? fuck you man !">
+        <input type="hidden" id="hiddenInput" value="I am really sorry I can't solve your question !">
     </div>
 </div>
 </body>

@@ -1,0 +1,16 @@
+.out-side{
+    width: 100%;
+    height: 100%;
+}
+
+.login-cls {
+    position: relative;
+}
+
+.back-ground-img-cls {
+    position: absolute;
+}
+
+.second-div a{
+    text-decoration: none;
+}

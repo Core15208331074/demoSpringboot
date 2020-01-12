@@ -5,8 +5,7 @@ import com.example.demo.common.codeDemo.ResultCode;
 import com.example.demo.common.codeDemo.ResultModel;
 import com.example.demo.entity.Personnel;
 import com.example.demo.service.IPersonnelService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 
 @Api(description = "人员")
 @Controller
@@ -51,6 +49,12 @@ public class PersonnelController {
             result.setData(new Object());
             return result;
         }
+    }
+
+    @GetMapping("/findShiYuan")
+    @ApiOperation(value = "/findAllPersonnelView")
+    public String findShiYuanView(Model model) {
+        return "personnel/shiyuan";
     }
 
 }
