@@ -6,7 +6,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   freemarker:
     request-context-attribute: req  #req访问request
-    suffix: .ftl  #后缀名
+    suffix: .html  #后缀名
     content-type: text/html
     enabled: true
     cache: false #缓存配置

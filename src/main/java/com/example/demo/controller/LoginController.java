@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/login")
 public class LoginController {
     @GetMapping("")
-    @ApiOperation(value = "/loginView")
+    @ApiOperation(value = "/login")
     public String loginView(Model model) {
         return "login";
     }
