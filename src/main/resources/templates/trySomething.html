@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../static/plugins/vue/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input id="god" v-model="message" value=""/>
+    <a v-click="clickSomeone">点我！</a>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {message: "great！"},
+        methods: {
+            clickSomeone: function () {
+                alert("Hello World");
+            }
+        }
+    });
+</script>
+</html>

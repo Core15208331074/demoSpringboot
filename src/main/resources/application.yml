@@ -16,20 +16,58 @@ spring:
       number_format: '0.##'   #数字格式化，无小数点
   mvc:
    static-path-pattern: /static/**
+  profiles:
+    active:
+  messages:
+    basename: internationalization.login
+
 
 mybatis:
   mapper-locations: classpath:mapper/**Mapper.xml
   type-aliases-package: com.example.demo.entity
 
+---
 server:
   port: 8090
   servlet:
     context-path: /cloudDemo
 
+---
+server:
+  port: 8091
+  servlet:
+    context-path: /cloudDemo
+spring:
+  profiles: dev
+
+---
+server:
+  port: 8092
+  servlet:
+    context-path: /cloudDemo
+spring:
+  profiles: prod
+---
 pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
 
+#personnel:
+#  name: 消防员
+#  age: 23
+#  gender: 男
+#  list:
+#    - 1
+#    - 2
+#    - 3
+#  pet:
+#    petName: 狗狗
+#    type: 阿拉斯加
 
+logging:
+  level:
+    com.example: trace
+  file:
+    path: d:/trace

@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/index")
 public class IndexController {
+
+
+
     @GetMapping("")
     @ApiOperation(value = "/indexView")
     public String indexView(Model model) {
