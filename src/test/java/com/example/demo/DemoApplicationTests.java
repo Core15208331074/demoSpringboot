@@ -63,4 +63,16 @@ class DemoApplicationTests {
         }
     }
 
+    @Test
+    public void transportSomething() {
+        try {
+            Class<String> stringClass = String.class;
+            String s = stringClass.newInstance();
+            System.out.println(s+"奥里给！");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

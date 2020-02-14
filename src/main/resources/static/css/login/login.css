@@ -1,19 +1,18 @@
-.out-side{
-    width: 100%;
-    height: 100%;
-}
-
 .login-cls {
-    position: relative;
+    width: 20% !important;
+    margin: auto !important;
 }
 
-.back-ground-img-cls {
-    margin-left: -1%;
-    width: 100%;
-    height: 98%;
-    position: absolute;
+.login-form {
+    margin-top: 5%;
 }
 
-.second-div a{
-    text-decoration: none;
+.input-login-password {
+    margin-top: 5px !important;
 }
+
+.sign-in {
+    width:15% !important;
+    margin: auto !important;
+}
+
