@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +67,7 @@ public class PersonnelController {
 
     @GetMapping("/outPortExcel")
     @ApiOperation(value = "/outPortExcel")
-    public void outPortExcel(HttpServletResponse response){
+    public void outPortExcel(HttpServletResponse response) {
         try {
             List<Personnel> list = iPersonnelService.findAllPersonnel();
             String[] str = {"团队名称", "下级人数", "团队当前金额(元)", "团队消费(元)", "团队返佣(元)", "团队福利(元)", "团队充值(元)", "团队提现(元)"};
@@ -85,4 +86,21 @@ public class PersonnelController {
             return;
         }
     }
+
+    @RequestMapping(value = "/uploadPicture",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultModel uploadPicture(@RequestParam("file") MultipartFile file) {
+        ResultModel result = new ResultModel();
+        try {
+            result.setCode(200);
+            result.setData("上传成功");
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.setCode(500);
+            result.setMsg("上传失败");
+            return result;
+        }
+    }
+
 }

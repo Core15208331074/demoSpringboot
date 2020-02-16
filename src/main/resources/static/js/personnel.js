@@ -145,3 +145,4 @@ option = {
 	
 	theChart.setOption(option);
 }
+
